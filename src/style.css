@@ -86,7 +86,7 @@ main {
   }
   
 .weather-app-unit {
-    margin-top: 16px;
+    margin-top: 14px;
     font-size: 34px;
   }
 
@@ -105,7 +105,7 @@ main {
   }
   
   .weather-forecast-icon {
-    font-size: 38px;
+    width: 80px;
     text-align: center;
   }
   .weather-forecast-temperatures {

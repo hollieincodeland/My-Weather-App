@@ -11,10 +11,11 @@ function refreshWeather(response) {
   
     cityElement.innerHTML = response.data.city;
     timeElement.innerHTML = formatDate(date);
-    descriptionElement.innerHTML = response.data.condition.description;
+    descriptionElement.innerHTML = titleCase(response.data.condition.description);
     humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
     windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
     temperatureElement.innerHTML = Math.round(temperature);
+    console.log(response.data.condition.icon_url);
     iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>`;
 
     getForecast(response.data.city);
@@ -72,7 +73,7 @@ function getForecast(city){
     let forecastHtml = "";
   
     response.data.daily.forEach(function (day, index) {
-      if (index < 5) {
+      if (index > 0 && index <7) {
       forecastHtml =
         forecastHtml +
         `
@@ -94,6 +95,14 @@ function getForecast(city){
     forecastElement.innerHTML = forecastHtml;
   }
   
+  function titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' '); 
+ }
+
   let searchFormElement = document.querySelector("#search-form");
   searchFormElement.addEventListener("submit", handleSearchSubmit);
 
